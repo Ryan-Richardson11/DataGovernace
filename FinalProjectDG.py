@@ -31,7 +31,7 @@ class GeneralizeData:
         (201, 225): '201-225',
         (226, 1_000_000): '226+'
     }
-        df['HouseholdIncome'] = df['HouseholdIncome'].apply(lambda x: next((v for k, v in income_generalization.items() if k[0] <= x <= k[1]), x))
+        df['HouseholdIncome'] = df['HouseholdIncome'].apply(lambda x: next((v for k, v in income_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 250 else x))
 
     def gen_education(self):
         education_generalization = {
