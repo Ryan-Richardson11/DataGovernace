@@ -13,10 +13,9 @@ class GeneralizeData:
         (51, 60): '51-60',
         (61, 70): '61-70',
         (71, 80): '71-80',
-        (81, 90): '81-90',
-        (91, 200): '91+'
+        (81, 90): '81-90'
     }
-        df['Age'] = df['Age'].apply(lambda x: next((v for k, v in age_generalization.items() if k[0] <= x <= k[1]), x))
+        df['Age'] = df['Age'].apply(lambda x: next((v for k, v in age_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 91 else x))
 
     def gen_income(self):
         income_generalization = {
@@ -28,10 +27,9 @@ class GeneralizeData:
         (126, 150): '126-150',
         (151, 175): '151-175',
         (176, 200): '176-200',
-        (201, 225): '201-225',
-        (226, 1_000_000): '226+'
+        (201, 225): '201-225'
     }
-        df['HouseholdIncome'] = df['HouseholdIncome'].apply(lambda x: next((v for k, v in income_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 250 else x))
+        df['HouseholdIncome'] = df['HouseholdIncome'].apply(lambda x: next((v for k, v in income_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 225 else x))
 
     def gen_education(self):
         education_generalization = {
@@ -40,15 +38,15 @@ class GeneralizeData:
         (16, 18): '16-18',
         (19, 100): '19+'
     }
-        df['EducationYears'] = df['EducationYears'].apply(lambda x: next((v for k, v in education_generalization.items() if k[0] <= x <= k[1]), x))
+        df['EducationYears'] = df['EducationYears'].apply(lambda x: next((v for k, v in education_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 20 else x))
 
     def gen_townsize(self):
         townsize_generalization = {
         (0, 1): '0-1',
         (2, 4): '2-4',
-        (5, 100): '5+'
+        (5, 6): '5-6'
     }
-        df['TownSize'] = df['TownSize'].apply(lambda x: next((v for k, v in townsize_generalization.items() if k[0] <= x <= k[1]), x))
+        df['TownSize'] = df['TownSize'].apply(lambda x: next((v for k, v in townsize_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 6 else x))
 
 def main():
     gen_data = GeneralizeData()
