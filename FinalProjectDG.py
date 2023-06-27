@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_excel('CustomerSurvey.xlsx', sheet_name='Andrew.data')
+df = pd.read_excel('Merr.Customer.Survey (2).xlsx', sheet_name='Andrew.data')
 
 class GeneralizeData:
     def gen_age(self):
@@ -56,6 +56,24 @@ def main():
     gen_data.gen_townsize()
 
     df.to_excel('deidentified_data.xlsx', index=False)
+
+    age_classes = df['Age'].value_counts()
+    print("Equivalence class sizes for Age:")
+    print(age_classes)
+
+    household_income_classes = df['HouseholdIncome'].value_counts()
+    print("Equivalence class sizes for HouseholdIncome:")
+    print(household_income_classes)
+
+    educationYears_classes = df['EducationYears'].value_counts()
+    print("Equivalence class sizes for EducationYears:")
+    print(educationYears_classes)
+
+    townsize_classes = df['TownSize'].value_counts()
+    print("Equivalence class sizes for TownSize:")
+    print(townsize_classes)
+
+    
     print("Complete")
 
 main()
