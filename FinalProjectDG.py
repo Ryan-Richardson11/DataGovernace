@@ -15,7 +15,7 @@ class GeneralizeData:
         (71, 80): '71-80',
         (81, 90): '81-90'
     }
-        df['Age'] = df['Age'].apply(lambda x: next((v for k, v in age_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 91 else x))
+        df['Age'] = df['Age'].apply(lambda x: next((v for k, v in age_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 90 else x))
 
     def gen_income(self):
         income_generalization = {
@@ -35,16 +35,15 @@ class GeneralizeData:
         education_generalization = {
         (0, 12): '0-12',
         (12, 14): '12-14',
-        (16, 18): '16-18',
-        (19, 100): '19+'
+        (16, 19): '16-19'
     }
         df['EducationYears'] = df['EducationYears'].apply(lambda x: next((v for k, v in education_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 20 else x))
 
     def gen_townsize(self):
         townsize_generalization = {
         (0, 1): '0-1',
-        (2, 4): '2-4',
-        (5, 6): '5-6'
+        (2, 3): '2-3',
+        (4, 5): '4-5'
     }
         df['TownSize'] = df['TownSize'].apply(lambda x: next((v for k, v in townsize_generalization.items() if k[0] <= x <= k[1]), 'Null' if x > 6 else x))
 
