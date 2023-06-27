@@ -72,6 +72,11 @@ def main():
     print("Equivalence class sizes for TownSize:")
     print(townsize_classes)
 
+    count_same_identifiers = df.groupby(['Age', 'HouseholdIncome', 'EducationYears', 'TownSize']).size().reset_index(name='Count')
+    count_same_identifiers = count_same_identifiers[count_same_identifiers['Count'] > 1]
+    print("\n")
+    print("Number of people with all four identifiers exactly the same:")
+    print(count_same_identifiers)
     
     print("Complete")
 
