@@ -75,7 +75,7 @@ def main():
     count_same_identifiers = df.groupby(['Age', 'HouseholdIncome', 'EducationYears', 'TownSize']).size().reset_index(name='Count')
     count_same_identifiers = count_same_identifiers[count_same_identifiers['Count'] > 1]
     print("\n")
-    print("Number of people with all four identifiers exactly the same:")
+    print("Equivalence classes for all four idendifiers:")
     print(count_same_identifiers)
     
     print("Complete")
